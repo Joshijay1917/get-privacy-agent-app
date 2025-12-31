@@ -1,11 +1,16 @@
-import { useState } from 'react';
-import { Lock, Mail, User, ShieldCheck, ArrowRight } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { ShieldCheck } from 'lucide-react';
 import Login from './Login';
 import Register from './Register';
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [page, setPage] = useState('login')
+  const [page, setPage] = useState<string>('login')
+
+  useEffect(() => {
+    setIsLogin(true)
+  }, [])
+  
 
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 pt-20">
