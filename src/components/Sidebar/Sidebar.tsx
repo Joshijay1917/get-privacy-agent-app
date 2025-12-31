@@ -1,4 +1,5 @@
 import { X, Home, Info, Shield, Mail, Download, Github, MessageSquare, Crown } from 'lucide-react';
+import { useState } from 'react';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -6,6 +7,21 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
+  const [isRedirecting, setIsRedirecting] = useState(false);
+  const handleDownload = () => {
+    setIsRedirecting(true);
+
+    const FILEID = '12CeEpGVJjXydZcxiqxlx4BBkqJk7Zrbi'
+    const driveUrl = `https://drive.google.com/uc?export=download&id=${FILEID}`;
+
+    setTimeout(() => {
+      window.open(driveUrl, '_blank', 'noopener,noreferrer');
+      setIsRedirecting(false);
+    }, 1000);
+
+    console.log("Redirecting to Google Drive for Privacy Agent APK...");
+  };
+
   const menuItems = [
     { name: 'Home', icon: <Home size={20} />, href: '/' },
     { name: 'Feedback', icon: <MessageSquare size={20} />, href: '/Feedback' },
@@ -58,9 +74,15 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
 
         {/* Bottom Actions */}
         <div className="absolute bottom-0 left-0 w-full p-6 border-t border-slate-100 bg-slate-50">
-          <button className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-4 rounded-xl font-bold shadow-lg shadow-blue-200 mb-4">
-            <Download size={18} />
-            Download APK
+          <button onClick={() => handleDownload()} className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-4 rounded-xl font-bold shadow-lg shadow-blue-200 mb-4">
+            {isRedirecting ? (
+                <>Connecting to Secure Server...</>
+              ) : (
+                <>
+                  <Download size={20} />
+                  Download APK
+                </>
+              )}
           </button>
           <a 
             href="https://github.com/Joshijay1917" 

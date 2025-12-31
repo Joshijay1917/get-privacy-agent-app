@@ -34,14 +34,14 @@ const Header = () => {
             Experience Gemini 2.5 Flash with total anonymity. We store LLM Memory On Your Device Locally.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <button onClick={() => { track('APK_Download'); handleDownload() }} className="px-8 py-4 bg-blue-600 flex gap-2 text-white rounded-xl font-bold shadow-lg shadow-blue-200 hover:scale-105 transition">
+            <button onClick={() => { track('APK_Download'); handleDownload() }} className="px-8 py-4 bg-blue-600 gap-2 text-white rounded-xl font-bold shadow-lg shadow-blue-200 hover:scale-105 transition">
               {isRedirecting ? (
                 <>Connecting to Secure Server...</>
               ) : (
-                <>
+                <p className="flex justify-center items-center gap-2">
                   <Download size={20} />
                   Download APK
-                </>
+                </p>
               )}
             </button>
             <button onClick={() => navigate('/auth')} className="px-8 py-4 border border-slate-200 text-slate-700 rounded-xl font-bold hover:bg-slate-50 transition">
