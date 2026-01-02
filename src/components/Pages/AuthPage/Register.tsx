@@ -26,7 +26,7 @@ function Register() {
 
         try {
             // 1. Send data to your Backend
-            const response = await axios.post("http://localhost:3000/api/v1/users/register", data, {
+            const response = await axios.post("https://privacy-agent-backend.onrender.com/api/v1/users/register", data, {
                 headers: { "Content-Type": "application/json" }
             });
 

@@ -25,7 +25,7 @@ function Login() {
 
     try {
       // 1. Send Login Request
-      const response = await axios.post("http://localhost:3000/api/v1/users/login", data, {
+      const response = await axios.post("https://privacy-agent-backend.onrender.com/api/v1/users/login", data, {
         withCredentials: true, // Crucial for receiving Cookies
         headers: { "Content-Type": "application/json" }
       });

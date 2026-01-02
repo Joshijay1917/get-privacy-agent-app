@@ -9,7 +9,7 @@ function Alert({ onClose }: { onClose: () => void }) {
     const handleAlert = async (s: string) => {
         // 1. Log the interest to your backend (for your analytics)
         try {
-            await axios.post('http://localhost:3000/api/track-interest', {
+            await axios.post('https://privacy-agent-backend.onrender.com/api/track-interest', {
                 message: s,
                 email: authcontext.user?.email
             });
