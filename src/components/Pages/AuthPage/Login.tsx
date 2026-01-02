@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { Mail, Lock, ArrowRight } from 'lucide-react'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../../context/AuthContext'
 
 type Inputs = {
   email: string
@@ -12,6 +13,7 @@ type Inputs = {
 
 function Login() {
   const [isLoading, setIsLoading] = useState(false);
+  const authcontext = useAuth()
   const navigate = useNavigate();
   const {
     register,
@@ -54,6 +56,15 @@ function Login() {
       setIsLoading(false);
     }
   }
+
+  useEffect(() => {
+    console.log(authcontext.user);
+    
+    if(authcontext.user) {
+      navigate('/Pricing')
+    }
+  }, [])
+  
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

@@ -26,7 +26,7 @@ function App() {
 
   const fetchUser = async () => {
     try {
-      const { data } = await axios.post('http://localhost:3000/api/v1/users/user', {}, { withCredentials: true });
+      const { data } = await axios.post('https://privacy-agent-backend.onrender.com/api/v1/users/user', {}, { withCredentials: true });
       setUser(data.data);
       console.log(data);
     } catch (error) {

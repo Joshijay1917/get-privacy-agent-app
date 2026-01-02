@@ -13,6 +13,7 @@ type Inputs = {
 
 function Register() {
     const [isLoading, setIsLoading] = useState(false);
+    const [registered, setRegistered] = useState<boolean>(false)
     const navigate = useNavigate();
     const {
         register,
@@ -29,12 +30,14 @@ function Register() {
             const response = await axios.post("https://privacy-agent-backend.onrender.com/api/v1/users/register", data, {
                 headers: { "Content-Type": "application/json" }
             });
-
+            setRegistered(true)
             if (response.data.success) {
                 toast.success("Registration successful!", { id: toastId });
                 navigate("/auth");
             }
         } catch (error: any) {
+            console.log(error);
+            
             // 3. Handle specific Backend errors (e.g., User already exists)
             const errorMessage = error.response?.data?.message || "Something went wrong";
             toast.error(errorMessage, { id: toastId });
@@ -88,9 +91,11 @@ function Register() {
             {errors.email && <p>Email is required</p>}
             {errors.password && <p>Password is required</p>}
 
-            <button type='submit' className="w-full bg-blue-600 mt-4 text-white py-4 rounded-xl font-bold shadow-lg shadow-blue-200 hover:bg-blue-700 hover:-translate-y-0.5 transition flex items-center justify-center gap-2">
-                {isLoading ? <p>Registering...</p> : <p className='flex items-center gap-1'>Create Account
+            <button type='submit' className={`w-full ${registered ? 'bg-green-600' : 'bg-blue-600'} mt-4 text-white py-4 rounded-xl font-bold shadow-lg shadow-blue-200 ${registered ? 'hover:bg-green-700' : 'hover:bg-blue-700'} hover:-translate-y-0.5 transition flex items-center justify-center gap-2`}>
+                {isLoading && <p>Registering...</p> }
+                {!registered && <p className='flex items-center gap-1'>Create Account
                 <ArrowRight className="w-5 h-5" /></p>}
+                {registered && <p>Registered Successfully</p>}
             </button>
         </form>
     )

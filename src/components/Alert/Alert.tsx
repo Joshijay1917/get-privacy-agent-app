@@ -59,7 +59,7 @@ function Alert({ onClose }: { onClose: () => void }) {
                             Notify me
                         </button>
                             : <button
-                                onClick={() => navigate('/auth')}
+                                onClick={() => {navigate('/auth'); onClose()}}
                                 className="flex-1 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all active:scale-95"
                             >
                                 Log In
