@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { Check, Shield, Crown } from 'lucide-react';
 import { useAuth } from '../../../context/AuthContext';
 
