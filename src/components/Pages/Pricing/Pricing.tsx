@@ -1,6 +1,9 @@
+import axios from 'axios';
 import { Check, Shield, Crown } from 'lucide-react';
+import { useAuth } from '../../../context/AuthContext';
 
 const Pricing = () => {
+  const authcontext = useAuth()
   const plans = [
     {
       name: "Free Tier",
@@ -11,7 +14,7 @@ const Pricing = () => {
         "Gemini 2.5 Flash/Lite Model",
         "25 Messages History Limit",
         "1 month memory",
-        "Schedule Notification", 
+        "Schedule Notification",
         "Local SQLite Storage"
       ],
       buttonText: "Current Plan",
@@ -36,6 +39,10 @@ const Pricing = () => {
     }
   ];
 
+  const handleUpgradeClick = async () => {
+    authcontext.setShowAlert(true)
+  };
+
   return (
     <section className="py-24 bg-white" id="pricing">
       <div className="max-w-5xl mx-auto px-4">
@@ -51,13 +58,12 @@ const Pricing = () => {
         {/* Pricing Cards */}
         <div className="grid md:grid-cols-2 gap-8 items-stretch">
           {plans.map((plan, index) => (
-            <div 
-              key={index} 
-              className={`relative flex flex-col p-8 rounded-3xl border transition-all duration-300 ${
-                plan.highlight 
-                ? 'border-blue-600 shadow-2xl shadow-blue-100 scale-105 z-10' 
-                : 'border-slate-200 hover:border-blue-200'
-              }`}
+            <div
+              key={index}
+              className={`relative flex flex-col p-8 rounded-3xl border transition-all duration-300 ${plan.highlight
+                  ? 'border-blue-600 shadow-2xl shadow-blue-100 scale-105 z-10'
+                  : 'border-slate-200 hover:border-blue-200'
+                }`}
             >
               {plan.highlight && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-1 rounded-full text-xs font-bold tracking-wide uppercase">
@@ -89,11 +95,10 @@ const Pricing = () => {
                 ))}
               </ul>
 
-              <button className={`w-full py-4 rounded-xl font-bold transition-all ${
-                plan.highlight 
-                ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-200' 
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}>
+              <button onClick={() => plan.name === 'Pro Agent' ? handleUpgradeClick() : ''} className={`w-full py-4 rounded-xl font-bold transition-all ${plan.highlight
+                  ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-200'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                }`}>
                 {plan.buttonText}
               </button>
             </div>

@@ -70,7 +70,7 @@ const ReleaseNotes = () => {
 
           {/* Social / Support Footer inside Release Notes */}
           <div className="mt-8 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4 px-4 text-sm text-slate-400 font-medium">
-            <p>Released on January 1, 2026</p>
+            <p>Released on January 2, 2026</p>
             <div className="flex gap-4">
               <a href="/Feedback" className="hover:text-blue-600 transition">Feedback</a>
             </div>

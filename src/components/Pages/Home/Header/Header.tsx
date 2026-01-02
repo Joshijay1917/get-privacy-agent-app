@@ -2,9 +2,11 @@ import { track } from "@vercel/analytics";
 import { Download } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../../context/AuthContext";
 
 const Header = () => {
   const navigate = useNavigate()
+  const authcontext = useAuth()
   const [isRedirecting, setIsRedirecting] = useState(false);
 
   const handleDownload = () => {
@@ -44,9 +46,9 @@ const Header = () => {
                 </p>
               )}
             </button>
-            <button onClick={() => navigate('/auth')} className="px-8 py-4 border border-slate-200 text-slate-700 rounded-xl font-bold hover:bg-slate-50 transition">
+            {authcontext.user === null && <button onClick={() => navigate('/auth')} className="px-8 py-4 border border-slate-200 text-slate-700 rounded-xl font-bold hover:bg-slate-50 transition">
               Log In
-            </button>
+            </button>}
           </div>
           {/* <p className="mt-4 text-sm text-slate-400 font-mono italic">Launch Date: Jan 1, 2026</p> */}
         </div>

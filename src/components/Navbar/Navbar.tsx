@@ -3,9 +3,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 import { Download } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
   const navigate = useNavigate()
+  const authcontext = useAuth()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isRedirecting, setIsRedirecting] = useState(false);
 
@@ -55,9 +57,9 @@ const Navbar = () => {
                 </>
               )}
             </button>
-            <button onClick={() => navigate('/auth')} className="bg-blue-600 hidden md:inline text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-blue-700 transition">
+            {authcontext.user === null && <button onClick={() => navigate('/auth')} className="bg-blue-600 hidden md:inline text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-blue-700 transition">
               Log In
-            </button>
+            </button>}
           </div>
         </div>
 
