@@ -12,15 +12,14 @@ const Header = () => {
   const handleDownload = () => {
     setIsRedirecting(true);
 
-    const FILEID = '12CeEpGVJjXydZcxiqxlx4BBkqJk7Zrbi'
-    const driveUrl = `https://drive.google.com/uc?export=download&id=${FILEID}`;
+    const githubReleaseUrl = 'https://github.com/Joshijay1917/get-privacy-agent-app/releases/download/1.0.0/privacy-agent-v1.apk';
 
     setTimeout(() => {
-      window.open(driveUrl, '_blank', 'noopener,noreferrer');
+      window.open(githubReleaseUrl, '_blank', 'noopener,noreferrer');
       setIsRedirecting(false);
     }, 1000);
 
-    console.log("Redirecting to Google Drive for Privacy Agent APK...");
+    console.log("Redirecting to GitHub for Privacy Agent APK download...");
   };
 
   return (
