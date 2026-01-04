@@ -46,12 +46,12 @@ function Alert({ onClose }: { onClose: () => void }) {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-3">
-                        <button
+                        {authcontext.user !== null && <button
                             onClick={() => handleAlert("can't wait")}
                             className="flex-1 px-6 py-3 bg-gray-100 text-gray-700 font-semibold rounded-xl hover:bg-gray-200 transition-colors"
                         >
                             Can't wait
-                        </button>
+                        </button>}
                         {authcontext.user !== null ? <button
                             onClick={() => handleAlert('notify')}
                             className="flex-1 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all active:scale-95"
